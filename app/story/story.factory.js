@@ -5,8 +5,8 @@
 		.module('app')
 		.factory('storyFactory', storyFactory);
 
-	storyFactory.$inject = ['$q', '$http', '$sce', 'appFactory'];
-	function storyFactory($q, $http, $sce, appFactory) {
+	storyFactory.$inject = ['$q', '$http', '$sce'];
+	function storyFactory($q, $http, $sce) {
 		var factory = {
 			getStory: getStory
 		};
