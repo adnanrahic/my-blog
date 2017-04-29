@@ -1,0 +1,112 @@
+<!-- Main Content -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Add a new story:</h2>
+            
+            <hr>
+            
+            <label for="title">Title</label><br>
+            <input ng-model="vm.story.title" type="text" name="title"> 
+            <br>
+            <hr>
+
+            <label for="subtitle">Subtitle</label><br>
+            <textarea ng-model="vm.story.subtitle" name="subtitle" cols="30" rows="10"></textarea>
+            <br>
+
+            <hr>
+
+            <label for="urlCode">Url Code</label><br>
+            <input ng-model="vm.story.urlCode" name="urlCode" type="text" />
+            <br>
+
+            <hr>
+
+            <label for="body">Body (HTML)</label><br>
+            <textarea ng-model="vm.story.body" name="body" cols="30" rows="20"></textarea>
+            <br>
+
+            <hr>
+
+            <label for="img">Image URL</label><br>
+            <input ng-model="vm.story.img" name="img" type="text"/>
+            <br>
+
+            <hr>
+
+            <label for="createdAt">Created At</label><br>
+            <input ng-model="vm.story.createdAt" name="createdAt" type="text"/>
+            <br>
+
+            <hr>
+
+            <button ng-click="vm.addStory()">Add Story</button>
+        </div>
+    </div>
+
+
+    <hr>
+    <hr>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h2>Stories:</h2>
+            <div ng-repeat="story in vm.stories">
+                <h3>Story Unique ID: {{ story._id }}</h3>
+                <div ng-hide="vm.editable === $index">
+                    <h4>Title: {{ story.title }}</h4>
+                    <p>Subtitle: {{ story.subtitle }}</p>
+                    <p>Url Code: {{ story.urlCode }}</p>
+                    <p>Body: {{ story.body }}</p>
+                    <p>Image URL: {{ story.img }}</p>
+                    <p>Created At: {{ story.createdAt }}</p>
+                </div>
+                
+                <div ng-show="vm.editable === $index">
+                    <label for="title">Title</label>
+                    <input ng-model="story.title" type="text"> <br>
+                    <label for="subtitle">Subtitle</label>
+                    <textarea ng-model="story.subtitle" name="subtitle" cols="30" rows="10"></textarea> <br>
+
+                    <hr>
+
+                    <label for="urlCode">Url Code</label><br>
+                    <input ng-model="story.urlCode" name="urlCode" type="text" />
+                    <br>
+
+                    <hr>
+
+                    <label for="body">Body</label>
+                    <textarea ng-model="story.body" name="body" cols="30" rows="10"></textarea>
+                    <br>
+
+                    <label for="img">Image URL</label><br>
+                    <input ng-model="story.img" name="img" type="text"/>
+                    <br>
+
+                    <hr>
+
+                    <label for="createdAt">Created At</label><br>
+                    <input ng-model="story.createdAt" name="createdAt" type="text"/>
+                    <br>
+
+                    <hr>
+                </div>
+
+
+                <button ng-hide="vm.editable === $index" ng-click="vm.setEditable($index)">Edit</button>
+                <button ng-show="vm.editable === $index" ng-click="vm.editStory(story)">Save</button>
+                <button ng-click="vm.deleteStory(story._id)">Delete</button>
+                <hr>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header" style="
+background: linear-gradient(to bottom right, rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('{{vm.story.img}}');
+background-size: cover;
+background-repeat: no-repeat;
+">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <h1>{{vm.story.title}}</h1>
+                    <h2 class="subheading">{{vm.story.subtitle}}</h2>
+                    <span class="meta">Posted on {{vm.story.createdAt}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <p ng-bind-html="vm.story.body"></p>
+            </div>
+        </div>
+    </div>
+</article>

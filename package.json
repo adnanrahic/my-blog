@@ -1,0 +1,29 @@
+{
+  "name": "blog-heroku",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "gulp build && PORT=4000 PROD=1 node server.js",
+    "dev": "gulp dev && nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "del": "^2.2.2",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-bytediff": "^1.0.0",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-concat": "^2.6.1",
+    "gulp-inject": "^4.2.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.2",
+    "mongoose": "^4.9.6",
+    "nodemon": "^1.11.0",
+    "request": "^2.79.0",
+    "serve-favicon": "^2.3.2"
+  }
+}

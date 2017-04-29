@@ -1,0 +1,23 @@
+section {
+  font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+}
+section p {
+  margin-bottom: 27px;
+  font-size: 20px;
+  line-height: 1.6;
+  color: #333;
+  text-align: justify;
+}
+section img {
+  max-width: 100%;
+}
+.aspectRatioPlaceholder {
+  max-width: auto !important;
+  max-height: auto !important;
+}
+.aspectRatioPlaceholder-fill {
+  padding-bottom: 0 !important;
+}
+.subheading a {
+  color: #02B875;
+}
