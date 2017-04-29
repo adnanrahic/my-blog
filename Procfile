@@ -1,1 +1,0 @@
-web: USERNAME=admin PASSWORD=supersecret npm start
