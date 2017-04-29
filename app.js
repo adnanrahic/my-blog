@@ -14,12 +14,17 @@ app.get('/api/', function (req, res) {
 
 // serve static files
 app.use(favicon(__dirname + '/app/favicon.ico'));
-if (process.env.PROD) 
+if (process.env.PROD) {
   app.use('/', express.static('dist'));
-else
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname + '/dist/index.html'));
+  });
+}
+else {
   app.use('/', express.static('app'));
-app.get('*', function (req, res) {
-  res.sendFile(path.join(__dirname + '/app/index.html'));
-});
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname + '/app/index.html'));
+  });
+}
 
 module.exports = app;

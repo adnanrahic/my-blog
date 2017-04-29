@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "gulp build && PROD=1 node server.js",
+    "dist": "gulp build && PORT=4000 PROD=1 nodemon server.js",
     "dev": "gulp dev && nodemon server.js"
   },
   "author": "",
