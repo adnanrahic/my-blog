@@ -20,6 +20,9 @@ var paths = {
 		'app/app.run.js',
 		'app/app.config.js'
 		],
+	auth: [
+		'app/auth/auth.factory.js'
+	],
 	home: [
 		'app/home/home.routes.js',
 		'app/home/home.factory.js',
@@ -51,6 +54,7 @@ var paths = {
 }
 
 paths.appSrc = paths.appInit
+       .concat(paths.auth)
        .concat(paths.about)
        .concat(paths.contact)
        .concat(paths.story)

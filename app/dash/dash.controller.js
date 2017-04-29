@@ -5,8 +5,8 @@
 		.module('app')
 		.controller('dashController', ctrl);
 
-	ctrl.$inject = ['$http', '$httpParamSerializer'];
-	function ctrl($http, $httpParamSerializer) {
+	ctrl.$inject = ['$http', '$httpParamSerializer', '$rootScope', 'authFactory'];
+	function ctrl($http, $httpParamSerializer, $rootScope, authFactory) {
 		var vm = this;
 		vm.stories = [];
 		vm.story = {};
@@ -19,10 +19,18 @@
 		activate();
 
 		function activate() {
+			auth({ email: 'example@email.com', password: 'password'});
 			getStories();
 		}
 
 		///////////////////
+
+		function auth(user) {
+			return authFactory.auth(user)
+				.then(function (me) {
+					return me;
+				});
+		}
 
 		function getStories() {
 			return $http.get('/api/stories')
@@ -38,7 +46,10 @@
 		function addStory() {
 			return $http.post('/api/stories', 
 					$httpParamSerializer(vm.story), {
-					headers: { "Content-Type": "application/x-www-form-urlencoded" }
+					headers: { 
+						"Content-Type": "application/x-www-form-urlencoded",
+						"x-access-token": String($rootScope.me.token)						 
+					}
 				})
 				.then(function (response) {
 					console.debug("addStory returned: ", response.data);
@@ -53,7 +64,9 @@
 				});
 		}
 		function deleteStory(id) {
-			return $http.delete('/api/stories/' + id)
+			return $http.delete('/api/stories/' + id, {
+					headers: { "x-access-token": String($rootScope.me.token) }
+				})
 				.then(function (response) {
 					console.debug("deleteStory returned: ", response.data);
 					var deletedStory = response.data;
@@ -80,7 +93,10 @@
             img: story.img,
             createdAt: story.createdAt
 					}), {
-					headers: { "Content-Type": "application/x-www-form-urlencoded" }
+					headers: { 
+						"Content-Type": "application/x-www-form-urlencoded",
+						"x-access-token": String($rootScope.me.token)
+					}
 				})
 				.then(function (response) {
 					console.debug("editStory returned: ", response.data);

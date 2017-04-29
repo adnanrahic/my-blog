@@ -4,15 +4,20 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var request = require("request");
 
-// api 
+/**
+ * API
+ */ 
 var db = require('./db');
+var AuthController = require('./api/auth/AuthController');
 var StoryController = require('./api/story/StoryController');
+var UserController = require('./api/user/UserController');
+app.use('/api/auth', AuthController);
 app.use('/api/stories', StoryController);
-app.get('/api/', function (req, res) {
-  res.status(200).send('f*** me sideways');
-});
+app.use('/api/users', UserController);
 
-// serve static files
+/**
+ * STATIC FILES
+ */
 app.use(favicon(__dirname + '/app/favicon.ico'));
 if (process.env.PROD) {
   app.use('/', express.static('dist'));

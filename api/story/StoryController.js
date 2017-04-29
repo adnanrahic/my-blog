@@ -6,22 +6,7 @@ router.use(bodyParser.urlencoded({ extended: false }));
 router.use(bodyParser.json());
 
 var Story = require('./Story');
-
-// CREATES A NEW STORY  
-router.post('/', function (req, res) {
-    Story.create({
-            title: req.body.title,
-            urlCode: req.body.urlCode,
-            subtitle: req.body.subtitle,
-            body: req.body.body,
-            img: req.body.img,
-            createdAt: req.body.createdAt
-        }, 
-        function (err, story) {
-            if (err) return res.status(500).send("There was a problem adding the information to the database.");
-            res.status(200).send(story);
-        });
-});
+var policies = require('../policies');
 
 // RETURNS ALL THE STORIES IN THE DATABASE
 router.get('/', function (req, res) {
@@ -38,6 +23,24 @@ router.get('/:id', function (req, res) {
         if (!story) return res.status(404).send("No Story found.");
         res.status(200).send(story);
     });
+});
+
+router.use(policies);
+
+// CREATES A NEW STORY  
+router.post('/', function (req, res) {
+    Story.create({
+            title: req.body.title,
+            urlCode: req.body.urlCode,
+            subtitle: req.body.subtitle,
+            body: req.body.body,
+            img: req.body.img,
+            createdAt: req.body.createdAt
+        }, 
+        function (err, story) {
+            if (err) return res.status(500).send("There was a problem adding the information to the database.");
+            res.status(200).send(story);
+        });
 });
 
 // DELETES A STORY FROM THE DATABASE
