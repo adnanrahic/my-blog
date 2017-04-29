@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "gulp build && PORT=4000 PROD=1 node server.js",
+    "start": "gulp build && USERNAME=admin PASSWORD=supersecret PROD=1 node server.js",
     "dev": "gulp dev && nodemon server.js"
   },
   "author": "",
