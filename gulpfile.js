@@ -7,6 +7,7 @@ var ngAnnotate = require('gulp-ng-annotate');
 var sourcemaps = require('gulp-sourcemaps');
 var bytediff = require('gulp-bytediff');
 var cleanCSS = require('gulp-clean-css');
+var htmlclean = require('gulp-htmlclean');
 
 var paths = {
 	index: 'app/index.html',
@@ -88,7 +89,7 @@ gulp.task('build', function () {
 
 	var favicon = gulp.src(paths.favicon).pipe(gulp.dest(paths.dist));
 	var distAssets = gulp.src(paths.assets).pipe(gulp.dest(paths.distAssets));
-	var distTemplates = gulp.src(paths.templates).pipe(gulp.dest(paths.dist));
+	var distTemplates = gulp.src(paths.templates).pipe(htmlclean()).pipe(gulp.dest(paths.dist));
 
   var dist = gulp.src(paths.appSrc)
 		.pipe(sourcemaps.init())
@@ -105,6 +106,7 @@ gulp.task('build', function () {
   
   // need the index from the dist directory!!!!
   return gulp.src(paths.index)
+		.pipe(htmlclean())
 		.pipe(gulp.dest(paths.dist))
 		.pipe(inject(distAssets, {
 				relative: true,
