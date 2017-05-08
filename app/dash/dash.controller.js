@@ -5,9 +5,12 @@
 		.module('app')
 		.controller('dashController', ctrl);
 
-	ctrl.$inject = ['$http', '$httpParamSerializer', '$rootScope', 'authFactory'];
-	function ctrl($http, $httpParamSerializer, $rootScope, authFactory) {
+	ctrl.$inject = ['$routeParams', '$http', '$httpParamSerializer', '$rootScope', 'authFactory'];
+	function ctrl($routeParams, $http, $httpParamSerializer, $rootScope, authFactory) {
 		var vm = this;
+		var email = $routeParams.email;
+		var password = $routeParams.password;
+
 		vm.stories = [];
 		vm.story = {};
 		vm.editable = false;
@@ -19,7 +22,11 @@
 		activate();
 
 		function activate() {
-			auth({ email: 'example@email.com', password: 'password'});
+			console.log(email, password);
+			if (!email && !password) {
+				return alert('Please enter a username and password');
+			}
+			auth({ email: email, password: password});
 			getStories();
 		}
 

@@ -1,3 +1,3 @@
 module.exports = {
-  'secret': 'thisismyblog'
+  'secret': process.env.SECRET || require('./.env/dev').SECRET
 };

@@ -25,6 +25,7 @@ router.get('/:id', function (req, res) {
     });
 });
 
+// ROUTES BELOW REQUIRE AUTHENTICATION
 router.use(policies);
 
 // CREATES A NEW STORY  

@@ -7,7 +7,7 @@
 
 	dashRoutes.$inject = ['$routeProvider'];
 	function dashRoutes($routeProvider) {
-		$routeProvider.when("/dash", {
+		$routeProvider.when("/dash/:email?/:password?", {
 	        controller: "dashController",
 	        controllerAs: "vm",
 	        templateUrl: "dash/dash.html",
