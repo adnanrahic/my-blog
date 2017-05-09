@@ -1,3 +1,7 @@
+var SECRET;
+if (!process.env.PROD) {
+  SECRET = require('./.env/dev').SECRET;
+}
 module.exports = {
-  'secret': process.env.SECRET || require('./.env/dev').SECRET
+  'secret': process.env.SECRET || SECRET
 };
