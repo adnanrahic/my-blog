@@ -18,14 +18,15 @@ app.use('/api/users', UserController);
 /**
  * STATIC FILES
  */
-app.use(favicon(__dirname + '/app/favicon.ico'));
 if (process.env.PROD) {
+  app.use(favicon(__dirname + '/dist/favicon.ico'));
   app.use('/', express.static('dist'));
   app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname + '/dist/index.html'));
   });
 }
 else {
+  app.use(favicon(__dirname + '/app/favicon.ico'));
   app.use('/', express.static('app'));
   app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname + '/app/index.html'));
