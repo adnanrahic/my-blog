@@ -4,9 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "gulp build && PROD=1 node server.js",
-    "dist": "gulp build && PORT=4000 PROD=1 nodemon server.js",
-    "dev": "gulp dev && nodemon server.js"
+    "start": "gulp build && node server.js",
+    "prod": "gulp build && PORT=4000 ENV=prod nodemon server.js",
+    "dev": "gulp dev && ENV=dev nodemon server.js"
   },
   "author": "",
   "license": "ISC",
