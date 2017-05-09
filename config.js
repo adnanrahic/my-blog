@@ -1,5 +1,5 @@
 var SECRET;
-if (!process.env.PROD) {
+if (process.env.PROD !== 1) {
   SECRET = require('./.env/dev').SECRET;
 }
 module.exports = {
